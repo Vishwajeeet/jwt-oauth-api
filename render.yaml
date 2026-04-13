@@ -4,7 +4,9 @@ services:
     env: docker
     plan: free
     
-    # Build configuration
+    # Specify Python version (3.14 has compatibility issues with SQLAlchemy)
+    # Using 3.12 LTS for stability
+    dockerfile: Dockerfile
     dockerfilePath: ./Dockerfile
     
     # Health check
@@ -28,9 +30,3 @@ services:
         sync: false
       - key: GITHUB_CLIENT_SECRET
         sync: false
-    
-    # Build command (optional - not needed since migrations run in Dockerfile)
-    # buildCommand: "pip install -r requirements.txt && alembic upgrade head"
-    
-    # Start command (not needed - we use CMD from Dockerfile)
-    # startCommand: "uvicorn app.main:app --host 0.0.0.0 --port 8000"
