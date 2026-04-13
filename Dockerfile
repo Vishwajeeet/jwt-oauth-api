@@ -1,6 +1,5 @@
 # Production-grade Dockerfile for JWT OAuth API with Supabase
-# Using Python 3.12 for better stability with SQLAlchemy
-# (Python 3.14 has compatibility issues with some packages)
+# Using Python 3.12 for better stability (psycopg v3 has full support)
 FROM python:3.12-slim
 
 # Set environment variables

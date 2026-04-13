@@ -4,24 +4,22 @@ services:
     env: docker
     plan: free
     
-    # Specify Python version (3.14 has compatibility issues with SQLAlchemy)
-    # Using 3.12 LTS for stability
-    dockerfile: Dockerfile
+    # Build with Docker (ensures consistent environment)
     dockerfilePath: ./Dockerfile
     
-    # Health check
+    # Render service configuration
     healthCheckPath: /health
     
     # Environment variables (set these in Render dashboard)
     envVars:
       - key: DATABASE_URL
-        sync: false  # You'll set this manually in Render dashboard
+        sync: false
       - key: SECRET_KEY
         sync: false
       - key: ENVIRONMENT
         value: production
       - key: FRONTEND_URL
-        value: https://your-frontend-domain.com
+        value: https://your-domain.com
       - key: GOOGLE_CLIENT_ID
         sync: false
       - key: GOOGLE_CLIENT_SECRET
