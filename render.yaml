@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: jwt-oauth-api
+    env: docker
+    plan: free
+    
+    # Build configuration
+    dockerfilePath: ./Dockerfile
+    
+    # Health check
+    healthCheckPath: /health
+    
+    # Environment variables (set these in Render dashboard)
+    envVars:
+      - key: DATABASE_URL
+        sync: false  # You'll set this manually in Render dashboard
+      - key: SECRET_KEY
+        sync: false
+      - key: ENVIRONMENT
+        value: production
+      - key: FRONTEND_URL
+        value: https://your-frontend-domain.com
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GITHUB_CLIENT_ID
+        sync: false
+      - key: GITHUB_CLIENT_SECRET
+        sync: false
+    
+    # Build command (optional - not needed since migrations run in Dockerfile)
+    # buildCommand: "pip install -r requirements.txt && alembic upgrade head"
+    
+    # Start command (not needed - we use CMD from Dockerfile)
+    # startCommand: "uvicorn app.main:app --host 0.0.0.0 --port 8000"
