@@ -27,10 +27,7 @@ class Settings(BaseSettings):
         env_file = ".env"
 
     @field_validator("DATABASE_URL")
-    def assemble_db_connection(cls, v: PostgresDsn) -> str:
-        db_url = str(v)
-        if not db_url.endswith("/jwt_api_db"):
-            db_url = f"{db_url}/jwt_api_db"
-        return db_url
+def assemble_db_connection(cls, v: PostgresDsn) -> str:
+    return str(v)
 
 settings = Settings()
