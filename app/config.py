@@ -25,9 +25,11 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ".env"
+        extra = "ignore"  # Ignore extra environment variables not defined in Settings
 
     @field_validator("DATABASE_URL")
-def assemble_db_connection(cls, v: PostgresDsn) -> str:
-    return str(v)
+    @classmethod
+    def assemble_db_connection(cls, v: PostgresDsn) -> str:
+        return str(v)
 
 settings = Settings()
